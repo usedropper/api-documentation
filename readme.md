@@ -38,6 +38,8 @@ This endpoint creates a new delivery object in the UseDropper database. It accep
 
 #### Headers
 
+You'll also need to include your API key, as shown here.
+
     {
       "content-type": "application/json",
       "x-dropper-api-key": "3A9D59EDAD564202BC7904B40D3CAE2A"
