@@ -7,10 +7,20 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
+import ThemedImage from '@theme/ThemedImage';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
-export const Tagline = () => <p style={{'font-size': '1.75em'}} >{useDocusaurusContext().siteConfig.tagline} 📦</p>;
+export const Tagline = () => <p style={{'font-size': '1.75em'}} >{useDocusaurusContext().siteConfig.tagline} 📦</p>
 
-<a href="/docs/intro"><img src="img/logo.svg" width="250"/></a>
+<ThemedImage
+  style={{ display: 'block' }}
+  width="250"
+  alt="Logo"
+  sources={{
+    light: useBaseUrl('/img/logo.svg'),
+    dark: useBaseUrl('/img/darkLogo.svg'),
+  }}
+/>
 
 <Tagline/>
 
