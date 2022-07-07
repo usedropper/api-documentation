@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkapi_documentation=self.webpackChunkapi_documentation||[]).push([[409],{4445:o=>{o.exports=JSON.parse('{"permalink":"/api-documentation/blog/tags/facebook","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
