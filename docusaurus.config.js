@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 const config = {
   title: 'Dropper',
   tagline: 'Give your customers the gift of hassle-free logistics',
-  url: 'http://docs.usedropper.com/',
+  url: 'https://docs.usedropper.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
