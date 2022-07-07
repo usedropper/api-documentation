@@ -42,6 +42,7 @@ const { GraphQLClient } = require("graphql-request");
 const client = new GraphQLClient("https://api.usedropper.com/v1/graphql", {
   headers: {
     content-type: "application/json",
+    // highlight-next-line
     x-dropper-api-key: process.env.YOUR_API_KEY
   },
 });
@@ -52,7 +53,10 @@ const client = new GraphQLClient("https://api.usedropper.com/v1/graphql", {
 <TabItem value="curl">
 
 ```bash
-curl -X POST https://api.usedropper.com/v1/graphql -H "Content-type: json" -H "x-dropper-api-key: <YOUR_API_KEY>"
+curl -X POST https://api.usedropper.com/v1/graphql \
+-H "content-type: json" \
+# highlight-next-line
+-H "x-dropper-api-key: <YOUR_API_KEY>"
 ```
 
 </TabItem>
