@@ -1,0 +1,59 @@
+---
+sidebar_position: 1
+sidebar_label: "Authentication"
+---
+
+# Authentication
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+
+
+Authenticate your API calls by including your API key in the Authorization header of every request you make. 
+You can manage your API keys from the [dashboard](https://dashboard.usedropper.com/).
+
+
+<br/>
+
+:::danger IMPORTANT
+Secure your API key.
+Do not commit your API keys to git, or use them plainly in client-side code.
+:::
+
+<br/>
+Authorization headers should be in the following format: 
+
+
+export const endpoint = 'https://api.usedropper.com/v1/graphql'
+
+<Tabs groupId="formats"
+  defaultValue="js"
+  values={[
+      { label: 'cURL', value: 'curl', },
+      { label: 'NodeJS', value: 'js', },
+  ]}
+>  
+<TabItem value="js">
+
+```jsx
+const { GraphQLClient } = require("graphql-request");
+
+const client = new GraphQLClient("https://api.usedropper.com/v1/graphql", {
+  headers: {
+    content-type: "application/json",
+    x-dropper-api-key: process.env.YOUR_API_KEY
+  },
+});
+
+```
+
+</TabItem>
+<TabItem value="curl">
+
+```bash
+curl -X POST https://api.usedropper.com/v1/graphql -H "Content-type: json" -H "x-dropper-api-key: <YOUR_API_KEY>"
+```
+
+</TabItem>
+</Tabs>
