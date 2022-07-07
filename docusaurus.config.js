@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 const config = {
   title: 'Dropper',
   tagline: 'Give your customers the gift of hassle-free logistics',
-  url: 'https://docs.usedropper.com',
-  baseUrl: '/',
+  url: 'https://usedropper.github.io/',
+  baseUrl: '/api-documentation/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -18,6 +18,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'usedropper', // Usually your GitHub org/user name.
   projectName: 'api-documentation', // Usually your repo name.
+  trailingSlash: false,
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
