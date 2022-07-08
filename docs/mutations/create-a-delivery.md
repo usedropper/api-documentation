@@ -2,9 +2,15 @@
 sidebar_position: 1
 ---
 
-# Create Deliveries
+# Create Delivery
 
-Let's write a simple query to create a new delivery.
+Create delivery mutation is used to request a new delivery package for your user. 
+to do this, you make a mutation request to the newDelivery endpoint by passing required parameters in the request body like ```sender_name``` ```sender_address``` ```recipent_name``` ```recipent_address``` and passing your API key in the request header.
+
+Think about mutations like a post request in REST. 
+
+### A Sample request to create new delivery
+Let's write a simple mutation query to create a new delivery.
 
 
 #### Mutation
@@ -64,7 +70,7 @@ mutation newDelivery(
 }
 ```
 
-
+### Sample Successful Response
 We'll then receive the following response.
 ```graphql
 {

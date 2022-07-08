@@ -3,9 +3,16 @@ sidebar_position: 4
 ---
 
 # Get Delivery Status
-You can fetch a delivery with a given `tracking_id`.
+  
+Get Delivery query is used to get all detials of a particular delivery.
+To do this, you make a query request by calling getDelivery endpoint and passing `tracking_id` 
+as a parameter. 
 
-Let's create a mutation to fetch a delivery using a sample tracking ID in this example.
+Think about graphql queries like GET request in REST.
+
+### Sample request to get delivery
+
+Let's create a query to fetch a delivery using a sample tracking ID in this example.
 
 #### Query
 ```graphql
@@ -26,6 +33,8 @@ query getDelivery($tracking_id: uuid) {
   "tracking_id": "a15e5abb-7443-48eb-beaa-1a6a10946b7c"
 }
 ```
+
+### Sample Successful Response
 
 #### This request will return the following JSON response, which we can get the new id and values from.
 ```graphql
