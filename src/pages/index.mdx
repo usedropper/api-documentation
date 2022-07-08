@@ -10,7 +10,7 @@ import styles from './index.module.css';
 import ThemedImage from '@theme/ThemedImage';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-export const Tagline = () => <p style={{'font-size': '1.75em'}} >{useDocusaurusContext().siteConfig.tagline} 📦</p>
+export const Tagline = () => <p style={{'font-size': '1.5em'}} >{useDocusaurusContext().siteConfig.tagline} 📦</p>
 
 <ThemedImage
   style={{ display: 'block' }}
@@ -25,8 +25,6 @@ export const Tagline = () => <p style={{'font-size': '1.75em'}} >{useDocusaurusC
 <Tagline/>
 
 <br/>
-<br/>
-<br/>
 
 :::tip
 Before reading these docs and using the API, please ensure you have access to the [enterprise dashboard](https://dashboard.usedropper.com).
@@ -34,11 +32,6 @@ Before reading these docs and using the API, please ensure you have access to th
 
 <br/>
 <br/>
-
-
-<a href="/docs/intro"><Button>Get Started 🚀</Button></a>
-
-
 
 export const Button = ({children, color}) => (
   <span
@@ -52,3 +45,5 @@ export const Button = ({children, color}) => (
     {children}
   </span>
 );
+
+<a href="/docs/intro"><Button>Get Started 🚀</Button></a>
