@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Get Delivery Status
   
-The Get Delivery query is used to fetch all details about a specific delivery..
+The Get Delivery query is used to fetch all details about a specific delivery.
 To do this, you make a request by calling getDelivery query and passing `tracking_id` 
 as a parameter. 
 
