@@ -4,8 +4,8 @@ sidebar_position: 4
 
 # Get Delivery Status
   
-Get Delivery query is used to get all detials of a particular delivery.
-To do this, you make a query request by calling getDelivery endpoint and passing `tracking_id` 
+The Get Delivery query is used to fetch all details about a specific delivery..
+To do this, you make a request by calling getDelivery query and passing `tracking_id` 
 as a parameter. 
 
 Think about graphql queries like GET request in REST.
