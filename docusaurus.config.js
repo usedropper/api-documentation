@@ -1,13 +1,13 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
+const lightCodeTheme = require('prism-react-renderer/themes/nightOwl');
 const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Dropper',
-  tagline: 'Give your customers the gift of hassle-free logistics',
+  tagline: 'Give your customers the gift of hassle-free logistics.',
   url: 'https://docs.usedropper.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -74,7 +74,7 @@ const config = {
           // {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://dashboard.usedropper.com',
-            label: 'Enterprise Dashboard',
+            label: 'Dropper Dashboard',
             position: 'right',
           },
         ],

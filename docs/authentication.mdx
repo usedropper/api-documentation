@@ -7,30 +7,30 @@ sidebar_label: "Authentication"
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import CodeBlock from '@theme/CodeBlock';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 
+You have to authenticate all API calls by including your API key in the authorization header of every request you make to the Dropper API.
 
-Authenticate your API calls by including your API key in the Authorization header of every request you make. 
-You can manage your API keys from the [dashboard](https://dashboard.usedropper.com/).
-
-
-## How can I get my API key?
-To get and manage your API Key, You request for access to [dropper developer dashboard](https://dashboard.usedropper.com/)
-and login credentials will be provided for you.
-Once logged in, navigate to account and then copy your keys.
-<img src={useBaseUrl('/img/dev-dashboard.png')} />;
-
-
-<br/>
-
-:::danger IMPORTANT
+:::caution IMPORTANT
 Secure your API key.
 Do not commit your API keys to git, or use them plainly in client-side code.
 :::
 
 <br/>
+
+### How can I get my API key?
+
+
+To get and manage your API Key, log into the [Dropper dashboard](https://dashboard.usedropper.com/).
+Once logged in, navigate to "API Settings" to obtain your API key.
+<img src={useBaseUrl('/img/apikey.png')} alt="Webhook image" width="600"/>
+
+<br/>
+<br/>
+
+### Authorization format
+
 Authorization headers should be in the following format: 
 
 

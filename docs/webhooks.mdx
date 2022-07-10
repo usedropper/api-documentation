@@ -1,0 +1,230 @@
+---
+sidebar_position: 3
+sidebar_label: "Webhooks"
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# Webhooks
+
+:::tip
+Webhooks allow you to set up a notification system that can be used to receive updates on certain requests made to the Dropper API.
+We recommend that you use webhooks to provide value to your customers over using callbacks or polling.
+:::
+
+<br/>
+
+### Webhooks vs Polling
+|<img src="/img/webhooks.png" alt="Webhook image" width="600"/>|
+|:---:|
+|<sub><sup>Image courtesy: <a href="https://medium.com/hookdeck/webhooks-explained-what-are-webhooks-and-how-do-they-work-90c613c055a4">Fikayo Adepoju</a></sup></sub>|
+
+Polling is when your application periodically calls an API to check if an event has occurred or new data exists. 
+Webhooks, on the other, send data down to your application when an event occurs **in real-time**. 
+
+To capture the difference between these two approaches with a relatable example, polling is like going to the post office to check if you have new mail. 
+Using webhooks is like having mail delivered to your house every time you have new mail simply by giving the postman your house address. 
+Polling is **more resource-heavy** compared to webhooks, as it can take multiple network requests before new information is discovered, 
+while webhooks only make network requests when there is new information. 
+
+With webhooks, a resource server, Dropper in this case, sends updates to your server when the status of your request changes. 
+A change in status of a request is known as an **event**. 
+You'll typically listen to these events on a `POST` endpoint called your **webhook URL**. <sub><sup><a href="https://medium.com/hookdeck/webhooks-explained-what-are-webhooks-and-how-do-they-work-90c613c055a4">Read more...</a></sup></sub>
+
+<br/>
+
+### Create a webhook URL
+A webhook URL is simply a `POST` endpoint that a resource server sends updates to.
+After creating your webhook, you can set your webhook URL on the [Dropper dashboard](https://dashboard.usedropper.com).
+
+When your webhook URL receives an event, it needs to parse and acknowledge the event. 
+Acknowledging an event means returning a `200 OK` in the HTTP header. 
+Without a `200 OK` in the response header, we'll send **2 retries 3 minutes apart**.
+
+```jsx title="Create a webhook"
+// Using express
+app.post("/your/webhook/url", function(req, res) {
+    const event = req.body;
+    // Process event  
+    
+    res.send(200);
+});
+```
+
+:::caution
+If you have a long-running task in your webhook, you should acknowledge the event before 
+executing the task to prevent a request timeout and an automatic error response from your server.
+Without a timely `200 OK` response, we retry the event as described above.
+:::
+
+
+<br/>
+
+### Verify event origin
+Since your webhook URL is publicly available, you need to verify that events originate from Dropper and not a bad actor.
+You can do this by signature validation.
+
+
+```jsx title="Webhook signature validation"
+const crypto = require('crypto');
+const secret = process.env.DROPPER_API_KEY;
+
+// Using express
+app.post("/your/webhook/url", function(req, res) {
+    // Validate event
+    const hash = crypto.createHmac('sha512', secret).update(JSON.stringify(req.body)).digest('hex');
+    if (hash == req.headers['x-dropper-signature']) {
+        const event = req.body;
+        // Process event  
+    }
+    res.send(200);
+});
+```
+
+<br/>
+
+### Supported webhook events
+
+:::info
+It is possible to receive **multiple events** at once through your webhook so the `events` field is an array of **event codes**.
+For example, a weight change can trigger a price update. 
+In this scenario, we will process the weight change and update your wallet balance accordingly. 
+Thus, the data sent to your webhook will look like:
+```json
+{
+  "events": [
+    "balance.update",
+    "delivery.weight.update"
+  ],
+  "data": {
+    ...
+  }
+}
+```
+:::
+
+<br/>
+
+<Tabs>
+<TabItem value="balance.update" label="📦 Balance Update">
+
+```json title="Example Event"
+{
+  "events": [
+    "balance.update"
+  ],
+  "data": {
+    "wallet": {
+      "balance": 31481.7,
+      "currency": "NGN"
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="delivery.status.update" label="📦 Delivery Status Update">
+
+```json title="Example Event"
+{
+  "events": [
+    "delivery.status.update",
+  ],
+  "data": {
+    "deliveryData": {
+      "old": {
+        "status": "ASSIGNED",
+        ...
+      },
+      "new": {
+        "status": "DROPPING",
+        ...
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="delivery.weight.update" label="📦 Delivery Weight Update">
+
+```json title="Example Event"
+{
+  "events": [
+    "delivery.status.update",
+  ],
+  "data": {
+    "deliveryData": {
+      "old": {
+        "weight": 8.5,
+        ...
+      },
+      "new": {
+        "weight": 10,
+        ...
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+<TabItem value="delivery.address.update" label="📦 Delivery Address Update">
+
+```json title="Example Event"
+{
+  "events": [
+    "delivery.status.update",
+  ],
+  "data": {
+    "deliveryData": {
+      "old": {
+        "recipient_address": {
+          "addr_line_1": "20 Lekki St",
+          "addr_line_2": "Apt 8F",
+          "city": "Ikoyi"
+          "state": "Lagos",
+          "country": "Nigeria",
+        },
+        ...
+      },
+      "new": {
+        "recipient_address": {
+          "addr_line_1": "15 Apapa St",
+          "addr_line_2": "Door 7",
+          "city": "Ikoyi"
+          "state": "Lagos",
+          "country": "Nigeria",
+        },
+        ...
+      }
+    }
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+<br/>
+
+|**Event Code**|**Description**|
+|:--|:--|
+|balance.update|An invoice was updated and the wallet balance has changed|
+|delivery.status.update|The status of a delivery has been updated|
+|delivery.weight.update|The weight of a delivery has been updated|
+|delivery.address.update|An address associated with a delivery has been updated (recipient or sender or both)|
+
+<br/>
+
+### Webhook checklist
+
+Now that we've covered all there is to know about using webhooks with Dropper's API, here is a recap to ensure you have a great experience:
+
++ Add the webhook URL on your [Dropper dashboard](https://dashboard.usedropper.com).
++ Ensure your webhook URL is publicly available (localhost URLs cannot receive events).
++ Test your webhook to ensure you're getting the JSON body and returning a `200 OK` HTTP response.
++ If your webhook function has long-running tasks, you should first acknowledge receiving the webhook by returning a `200 OK` before proceeding with the tasks.
++ If we don't get a `200 OK` HTTP response from your webhooks, we flagged it as a failed attempt and retry twice 3 minutes apart.
