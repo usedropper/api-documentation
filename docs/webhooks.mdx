@@ -21,17 +21,16 @@ We recommend that you use webhooks to provide value to your customers over using
 |:---:|
 |<sub><sup>Image courtesy: <a href="https://medium.com/hookdeck/webhooks-explained-what-are-webhooks-and-how-do-they-work-90c613c055a4">Fikayo Adepoju</a></sup></sub>|
 
-Polling is when your application periodically calls an API to check if an event has occurred or new data exists. 
-Webhooks, on the other, send data down to your application when an event occurs **in real-time**. 
-
-To capture the difference between these two approaches with a relatable example, polling is like going to the post office to check if you have new mail. 
-Using webhooks is like having mail delivered to your house every time you have new mail simply by giving the postman your house address. 
-Polling is **more resource-heavy** compared to webhooks, as it can take multiple network requests before new information is discovered, 
-while webhooks only make network requests when there is new information. 
+> Polling is when your application periodically calls an API to check if an event has occurred or new data exists. 
+> Webhooks, on the other, send data down to your application when an event occurs **in real-time**. 
+> To capture the difference between these two approaches with a relatable example, polling is like going to the post office to check if you have new mail. 
+> Using webhooks is like having mail delivered to your house every time you have new mail simply by giving the postman your house address. 
+> Polling is **more resource-heavy** compared to webhooks, as it can take multiple network requests before new information is discovered, 
+> while webhooks only make network requests when there is new information. <sub><sup><a href="https://medium.com/hookdeck/webhooks-explained-what-are-webhooks-and-how-do-they-work-90c613c055a4">Read more...</a></sup></sub>
 
 With webhooks, a resource server, Dropper in this case, sends updates to your server when the status of your request changes. 
 A change in status of a request is known as an **event**. 
-You'll typically listen to these events on a `POST` endpoint called your **webhook URL**. <sub><sup><a href="https://medium.com/hookdeck/webhooks-explained-what-are-webhooks-and-how-do-they-work-90c613c055a4">Read more...</a></sup></sub>
+You'll typically listen to these events on a `POST` endpoint called your **webhook URL**.
 
 <br/>
 
