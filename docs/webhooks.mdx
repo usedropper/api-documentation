@@ -152,7 +152,7 @@ Thus, the data sent to your webhook will look like:
 ```json title="Example Event"
 {
   "events": [
-    "delivery.status.update",
+    "delivery.weight.update",
   ],
   "data": {
     "deliveryData": {
@@ -175,12 +175,12 @@ Thus, the data sent to your webhook will look like:
 ```json title="Example Event"
 {
   "events": [
-    "delivery.status.update",
+    "delivery.address.update",
   ],
   "data": {
     "deliveryData": {
       "old": {
-        "recipient_address": {
+        "recipientAddress": {
           "addr_line_1": "20 Lekki St",
           "addr_line_2": "Apt 8F",
           "city": "Ikoyi"
@@ -190,7 +190,7 @@ Thus, the data sent to your webhook will look like:
         ...
       },
       "new": {
-        "recipient_address": {
+        "recipientAddress": {
           "addr_line_1": "15 Apapa St",
           "addr_line_2": "Door 7",
           "city": "Ikoyi"

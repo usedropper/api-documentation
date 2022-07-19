@@ -5,7 +5,7 @@ sidebar_position: 4
 # Get Delivery Status
   
 The Get Delivery query is used to fetch all details about a specific delivery.
-To do this, you make a request by calling getDelivery query and passing `tracking_id` 
+To do this, you make a request by calling getDelivery query and passing `trackingId` 
 as a parameter. 
 
 Think about graphql queries like GET request in REST.
@@ -16,13 +16,13 @@ Let's create a query to fetch a delivery using a sample tracking ID in this exam
 
 #### Query
 ```graphql
-query getDelivery($tracking_id: uuid) {
-  delivery(where: {tracking_id: {_eq: $tracking_id}}) {
+query getDelivery($trackingId: uuid) {
+  delivery(where: {trackingId: {_eq: $trackingId}}) {
     fragile
-    sender_name
-    sender_address
-    recipient_name
-    recipient_address
+    senderName
+    senderAddress
+    recipientName
+    recipientAddress
     weight
   }
 }
@@ -30,7 +30,7 @@ query getDelivery($tracking_id: uuid) {
 #### Variables
 ```graphql
 {
-  "tracking_id": "a15e5abb-7443-48eb-beaa-1a6a10946b7c"
+  "trackingId": "a15e5abb-7443-48eb-beaa-1a6a10946b7c"
 }
 ```
 
@@ -43,8 +43,8 @@ query getDelivery($tracking_id: uuid) {
     "delivery": [
       {
         "fragile": true,
-        "sender_name": "",
-        "sender_address": {
+        "senderName": "",
+        "senderAddress": {
           "city": "",
           "state": "",
           "country": "",
@@ -52,8 +52,8 @@ query getDelivery($tracking_id: uuid) {
           "addr_line2": "",
           "postal_code": ""
         },
-        "recipient_name": "",
-        "recipient_address": {
+        "recipientName": "",
+        "recipientAddress": {
           "city": "",
           "state": "",
           "country": "",

@@ -5,7 +5,7 @@ sidebar_position: 1
 # Create Delivery
 
 Create delivery mutation is used to request a new delivery package for your user. 
-to do this, you make a request to the newDelivery mutation by passing required parameters in the request body like `sender_name` `sender_address` ```recipent_name``` ```recipent_address``` and passing your API key in the request header.
+to do this, you make a request to the newDelivery mutation by passing required parameters in the request body like `senderName` `senderAddress` ```recipent_name``` ```recipent_address``` and passing your API key in the request header.
 
 Think about mutations like a post request in REST. 
 
@@ -16,27 +16,27 @@ Let's write a simple mutation query to create a new delivery.
 #### Mutation
 ```graphql
 mutation newDelivery(
-  $sender_name: String,
-  $sender_address: jsonb!,
-  $sender_phone: String,
-  $recipient_name: String,
-  $recipient_address: jsonb!,
-  $recipient_phone: String,
+  $senderName: String,
+  $senderAddress: jsonb!,
+  $senderPhone: String,
+  $recipientName: String,
+  $recipientAddress: jsonb!,
+  $recipientPhone: String,
   $weight: numeric,
   $fragile: Boolean,
   ) {
-    insert_delivery(objects: [{
-      sender_phone: $sender_phone,
-      sender_name: $sender_name,
-      sender_address: $sender_address,
-      recipient_phone: $recipient_phone,
-      recipient_name: $recipient_name,
-      recipient_address: $recipient_address,
+    insertDelivery(objects: [{
+      senderPhone: $senderPhone,
+      senderName: $senderName,
+      senderAddress: $senderAddress,
+      recipientPhone: $recipientPhone,
+      recipientName: $recipientName,
+      recipientAddress: $recipientAddress,
       weight: $weight,
       fragile: $fragile,
     }]) {
     returning {
-      tracking_id
+      trackingId
     }
   }
 }
@@ -45,9 +45,9 @@ mutation newDelivery(
 #### Variables
 ```graphql
 {
-  "sender_name": "Aisha Fatima",
-  "sender_phone": "+2348012345678",
-  "sender_address": {
+  "senderName": "Aisha Fatima",
+  "senderPhone": "+2348012345678",
+  "senderAddress": {
     "addr_line1": "10 Lekki St",
     "addr_line2": "Ajao Estate",
     "city": "Victoria Island",
@@ -55,9 +55,9 @@ mutation newDelivery(
     "country": "Nigeria",
     "postal_code": ""
   },
-  "recipient_name": "Godwin Anyigbo",
-  "recipient_phone": "+2348087654321",
-  "recipient_address": {
+  "recipientName": "Godwin Anyigbo",
+  "recipientPhone": "+2348087654321",
+  "recipientAddress": {
     "addr_line1": "6A Divine Rd",
     "addr_line2": "",
     "city": "Owerri",
@@ -75,10 +75,10 @@ We'll then receive the following response.
 ```graphql
 {
   "data": {
-    "insert_delivery": {
+    "insertDelivery": {
       "returning": [
         {
-          "tracking_id": "a15e5abb-7443-48eb-beaa-1a6a10978b7c"
+          "trackingId": "a15e5abb-7443-48eb-beaa-1a6a10978b7c"
         }
       ]
     }
